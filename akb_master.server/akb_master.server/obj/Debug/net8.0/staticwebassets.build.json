@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "bJbfitwUvfJVyroEoNwdusYPpM/Lpf8RUBiRuMauMF4=",
+  "Source": "akb_master.server",
+  "BasePath": "_content/akb_master.server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -1,0 +1,6 @@
+@akb_master.server_HostAddress = http://localhost:5210
+
+GET {{akb_master.server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

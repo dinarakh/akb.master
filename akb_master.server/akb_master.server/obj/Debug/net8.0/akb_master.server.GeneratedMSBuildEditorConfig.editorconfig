@@ -17,11 +17,115 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = akb_master.server
 build_property.RootNamespace = akb_master.server
-build_property.ProjectDir = C:\Users\dinar\OneDrive\Рабочий стол\САЙТЫ\САЙТЫ\akb_master\akb_master.server\akb_master.server\
+build_property.ProjectDir = C:\Users\dinar\OneDrive\Рабочий стол\САЙТЫ\САЙТЫ\akb.master\akb_master.server\akb_master.server\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\dinar\OneDrive\Рабочий стол\САЙТЫ\САЙТЫ\akb_master\akb_master.server\akb_master.server
+build_property.MSBuildProjectDirectory = C:\Users\dinar\OneDrive\Рабочий стол\САЙТЫ\САЙТЫ\akb.master\akb_master.server\akb_master.server
 build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/Categories/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/Categories/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/Categories/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/Categories/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/Categories/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/Descriptions/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzY3JpcHRpb25zXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/Descriptions/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzY3JpcHRpb25zXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/Descriptions/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzY3JpcHRpb25zXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/Descriptions/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzY3JpcHRpb25zXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/Descriptions/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzY3JpcHRpb25zXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/Images/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1hZ2VzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/Images/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1hZ2VzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/Images/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1hZ2VzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/Images/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1hZ2VzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/Images/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1hZ2VzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/ProductImages/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdEltYWdlc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/ProductImages/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdEltYWdlc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/ProductImages/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdEltYWdlc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/ProductImages/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdEltYWdlc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/ProductImages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdEltYWdlc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/Products/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/Products/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/Products/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/Products/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/Products/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dinar/OneDrive/Рабочий стол/САЙТЫ/САЙТЫ/akb.master/akb_master.server/akb_master.server/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 

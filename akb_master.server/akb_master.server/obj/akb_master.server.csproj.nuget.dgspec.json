@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\САЙТЫ\\akb_master\\akb_master.server\\akb_master.server\\akb_master.server.csproj": {}
+    "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\САЙТЫ\\akb.master\\akb_master.server\\akb_master.server\\akb_master.server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\САЙТЫ\\akb_master\\akb_master.server\\akb_master.server\\akb_master.server.csproj": {
+    "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\САЙТЫ\\akb.master\\akb_master.server\\akb_master.server\\akb_master.server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\САЙТЫ\\akb_master\\akb_master.server\\akb_master.server\\akb_master.server.csproj",
+        "projectUniqueName": "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\САЙТЫ\\akb.master\\akb_master.server\\akb_master.server\\akb_master.server.csproj",
         "projectName": "akb_master.server",
-        "projectPath": "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\САЙТЫ\\akb_master\\akb_master.server\\akb_master.server\\akb_master.server.csproj",
+        "projectPath": "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\САЙТЫ\\akb.master\\akb_master.server\\akb_master.server\\akb_master.server.csproj",
         "packagesPath": "C:\\Users\\dinar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\САЙТЫ\\akb_master\\akb_master.server\\akb_master.server\\obj\\",
+        "outputPath": "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\САЙТЫ\\akb.master\\akb_master.server\\akb_master.server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dinar\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,23 +40,27 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.1, )"
+              "version": "[8.0.3, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.1, )"
+              "version": "[8.0.3, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[8.0.1, )"
+              "version": "[8.0.2, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.0.2, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

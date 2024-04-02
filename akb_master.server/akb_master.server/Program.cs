@@ -12,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Rigester DBContext
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<ApplicationContextDb>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
@@ -31,7 +31,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-    //name: "default",
-    //pattern: "{controller=--------}/{action=Index}/{id?}");
+//name: "default",
+//pattern: "{controller=--------}/{action=Index}/{id?}");
 
 app.Run();

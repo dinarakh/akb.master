@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("akb_master.server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+20219ba6792334f8d61317bb378074f8ac9cc73f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c1b8c6c67d049e955d2be69ef4b0e6cfd6d5cb58")]
 [assembly: System.Reflection.AssemblyProductAttribute("akb_master.server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("akb_master.server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

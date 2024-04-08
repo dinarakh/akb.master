@@ -10,6 +10,8 @@ using akb_master.server.Models;
 
 namespace akb_master.server.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class DescriptionsController : Controller
     {
         private readonly ApplicationContextDb _context;
@@ -19,139 +21,21 @@ namespace akb_master.server.Controllers
             _context = context;
         }
 
-        // GET: Descriptions
-        public async Task<IActionResult> Index()
+        [HttpGet(Name = "GetAllDescriptions")]
+        public IActionResult GetAllDescriptions()
         {
-            return View(await _context.Descriptions.ToListAsync());
-        }
+            // Извлекаем все продукты из таблицы
+            List<Description> descriptions = _context.Descriptions.ToList();
 
-        // GET: Descriptions/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
+            if (descriptions == null || descriptions.Count == 0)
             {
+                // Возвращаем HTTP 404 (Not Found), если список продуктов пуст
                 return NotFound();
             }
-
-            var description = await _context.Descriptions
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (description == null)
-            {
-                return NotFound();
-            }
-
-            return View(description);
+            // Возвращаем список продуктов в формате JSON
+            return Ok(descriptions);
         }
 
-        // GET: Descriptions/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
 
-        // POST: Descriptions/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Country,Polarity,Dimensions,Capacity,Starting_current,Performance,Guarantee")] Description description)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(description);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(description);
-        }
-
-        // GET: Descriptions/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var description = await _context.Descriptions.FindAsync(id);
-            if (description == null)
-            {
-                return NotFound();
-            }
-            return View(description);
-        }
-
-        // POST: Descriptions/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Country,Polarity,Dimensions,Capacity,Starting_current,Performance,Guarantee")] Description description)
-        {
-            if (id != description.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(description);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!DescriptionExists(description.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(description);
-        }
-
-        // GET: Descriptions/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var description = await _context.Descriptions
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (description == null)
-            {
-                return NotFound();
-            }
-
-            return View(description);
-        }
-
-        // POST: Descriptions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var description = await _context.Descriptions.FindAsync(id);
-            if (description != null)
-            {
-                _context.Descriptions.Remove(description);
-            }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool DescriptionExists(int id)
-        {
-            return _context.Descriptions.Any(e => e.Id == id);
-        }
     }
 }

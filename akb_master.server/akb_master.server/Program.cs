@@ -31,7 +31,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-//name: "default",
-//pattern: "{controller=--------}/{action=Index}/{id?}");
+
+
 
 app.Run();

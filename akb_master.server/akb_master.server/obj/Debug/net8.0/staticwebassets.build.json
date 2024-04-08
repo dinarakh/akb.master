@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "l2H4qUW2em0T4qIbROS8mArypHiCHIMzFSipdMUTlsM=",
+  "Hash": "1KOsWJnoowzwWWJNwysBn31ENFw7bgfW2M0zacZ2LmI=",
   "Source": "akb_master.server",
   "BasePath": "_content/akb_master.server",
   "Mode": "Default",
@@ -47,10 +47,10 @@
       "OriginalItemSpec": "C:\\Users\\dinar\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.3\\staticwebassets\\QuickGrid.razor.js"
     },
     {
-      "Identity": "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\САЙТЫ\\akb.master\\akb_master.server\\akb_master.server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\akb_master.server.styles.css",
+      "Identity": "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\akb_master\\akb_master.server\\akb_master.server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\akb_master.server.styles.css",
       "SourceId": "akb_master.server",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\САЙТЫ\\akb.master\\akb_master.server\\akb_master.server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\akb_master\\akb_master.server\\akb_master.server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/akb_master.server",
       "RelativePath": "akb_master.server.styles.css",
       "AssetKind": "All",
@@ -63,7 +63,7 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\САЙТЫ\\akb.master\\akb_master.server\\akb_master.server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\akb_master.server.styles.css"
+      "OriginalItemSpec": "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\akb_master\\akb_master.server\\akb_master.server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\akb_master.server.styles.css"
     }
   ]
 }

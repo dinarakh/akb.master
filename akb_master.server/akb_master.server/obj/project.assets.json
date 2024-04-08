@@ -7092,11 +7092,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\САЙТЫ\\akb.master\\akb_master.server\\akb_master.server\\akb_master.server.csproj",
+      "projectUniqueName": "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\akb_master\\akb_master.server\\akb_master.server\\akb_master.server.csproj",
       "projectName": "akb_master.server",
-      "projectPath": "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\САЙТЫ\\akb.master\\akb_master.server\\akb_master.server\\akb_master.server.csproj",
+      "projectPath": "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\akb_master\\akb_master.server\\akb_master.server\\akb_master.server.csproj",
       "packagesPath": "C:\\Users\\dinar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\САЙТЫ\\akb.master\\akb_master.server\\akb_master.server\\obj\\",
+      "outputPath": "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\akb_master\\akb_master.server\\akb_master.server\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dinar\\AppData\\Roaming\\NuGet\\NuGet.Config",

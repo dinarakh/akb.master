@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "B1QXSA7mcO6iQYqwQJSYIlcqnkkLgvfPP0a33dwdgcC3kjk/G+QHUOi9HqEO7kBHGVXf6cy+ZdISRoNZ1Pg0nQ==",
+  "dgSpecHash": "9IfcT6qKyBhxj2Vl1nwreuypHlpeVfX3X4ygbOEPBNpRNBXoo5LvesFn0ZVfjgRJxT+wJPUddnhYdHMg6nfu/g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\САЙТЫ\\akb.master\\akb_master.server\\akb_master.server\\akb_master.server.csproj",
+  "projectFilePath": "C:\\Users\\dinar\\OneDrive\\Рабочий стол\\САЙТЫ\\akb_master\\akb_master.server\\akb_master.server\\akb_master.server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dinar\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\dinar\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

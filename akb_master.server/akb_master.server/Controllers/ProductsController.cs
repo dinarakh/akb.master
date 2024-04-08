@@ -10,6 +10,10 @@ using akb_master.server.Models;
 
 namespace akb_master.server.Controllers
 {
+
+
+    [ApiController]
+    [Route("[controller]")]
     public class ProductsController : Controller
     {
         private readonly ApplicationContextDb _context;
@@ -19,152 +23,57 @@ namespace akb_master.server.Controllers
             _context = context;
         }
 
-        // GET: Products
-        public async Task<IActionResult> Index()
+        // Проекция данных только на необходимые поля
+        [HttpGet(Name = "GetProductsInfo")]
+        public IActionResult GetProductsInfo()
         {
-            var applicationContextDb = _context.Products.Include(p => p.Category).Include(p => p.Description);
-            return View(await applicationContextDb.ToListAsync());
-        }
-
-        // GET: Products/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var product = await _context.Products
-                .Include(p => p.Category)
-                .Include(p => p.Description)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            return View(product);
-        }
-
-        // GET: Products/Create
-        public IActionResult Create()
-        {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id");
-            ViewData["DescriptionId"] = new SelectList(_context.Descriptions, "Id", "Id");
-            return View();
-        }
-
-        // POST: Products/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,CategoryId,DescriptionId")] Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(product);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", product.CategoryId);
-            ViewData["DescriptionId"] = new SelectList(_context.Descriptions, "Id", "Id", product.DescriptionId);
-            return View(product);
-        }
-
-        // GET: Products/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var product = await _context.Products.FindAsync(id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", product.CategoryId);
-            ViewData["DescriptionId"] = new SelectList(_context.Descriptions, "Id", "Id", product.DescriptionId);
-            return View(product);
-        }
-
-        // POST: Products/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,CategoryId,DescriptionId")] Product product)
-        {
-            if (id != product.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
+            var productsInfo = _context.Products
+                .Select(p => new
                 {
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProductExists(product.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", product.CategoryId);
-            ViewData["DescriptionId"] = new SelectList(_context.Descriptions, "Id", "Id", product.DescriptionId);
-            return View(product);
-        }
+                    Name = p.Name,
+                    Price = p.Price
+                })
+                .ToList();
 
-        // GET: Products/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
+            if (productsInfo == null || productsInfo.Count == 0)
             {
-                return NotFound();
+                return NotFound(); // Возвращаем HTTP 404 (Not Found), если список продуктов пуст
             }
 
-            var product = await _context.Products
-                .Include(p => p.Category)
-                .Include(p => p.Description)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            return View(product);
+            return Ok(productsInfo);
         }
 
-        // POST: Products/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var product = await _context.Products.FindAsync(id);
-            if (product != null)
-            {
-                _context.Products.Remove(product);
-            }
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //[HttpGet(Name = "GetAllProducts")]
+        //public IActionResult GetAllProducts()
+        //{
+        //    // Извлекаем все продукты из таблицы
+        //    List<Product> products = _context.Products.ToList();
 
-        private bool ProductExists(int id)
-        {
-            return _context.Products.Any(e => e.Id == id);
-        }
+        //    if (products == null || products.Count == 0)
+        //    {
+        //        // Возвращаем HTTP 404 (Not Found), если список продуктов пуст
+        //        return NotFound();
+        //    }
+        //    // Возвращаем список продуктов в формате JSON
+        //    return Ok(products);
+        //}
+
+        //Возвращаем список информации о продуктах в формате JSON
+
+
+
+        //[HttpPost(Name = "PostProduct")]
+        //public IActionResult PostProduct(string productName)
+        //{
+        //    var cat = new Product
+        //    {
+        //        Name = productName
+        //    };
+        //    _context.Add(cat);
+        //    _context.SaveChanges();
+        //    return Ok();
+        //}
+
     }
 }

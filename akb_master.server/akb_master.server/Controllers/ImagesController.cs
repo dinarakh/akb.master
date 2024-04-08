@@ -10,6 +10,8 @@ using akb_master.server.Models;
 
 namespace akb_master.server.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class ImagesController : Controller
     {
         private readonly ApplicationContextDb _context;
@@ -19,139 +21,20 @@ namespace akb_master.server.Controllers
             _context = context;
         }
 
-        // GET: Images
-        public async Task<IActionResult> Index()
+        [HttpGet(Name = "GetAllImages")]
+        public IActionResult GetAllImages()
         {
-            return View(await _context.Images.ToListAsync());
-        }
+            // Извлекаем все продукты из таблицы
+            List<Image> images = _context.Images.ToList();
 
-        // GET: Images/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
+            if (images == null || images.Count == 0)
             {
+                // Возвращаем HTTP 404 (Not Found), если список продуктов пуст
                 return NotFound();
             }
-
-            var image = await _context.Images
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (image == null)
-            {
-                return NotFound();
-            }
-
-            return View(image);
+            // Возвращаем список продуктов в формате JSON
+            return Ok(images);
         }
 
-        // GET: Images/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Images/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Image image)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(image);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(image);
-        }
-
-        // GET: Images/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var image = await _context.Images.FindAsync(id);
-            if (image == null)
-            {
-                return NotFound();
-            }
-            return View(image);
-        }
-
-        // POST: Images/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Image image)
-        {
-            if (id != image.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(image);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ImageExists(image.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(image);
-        }
-
-        // GET: Images/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var image = await _context.Images
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (image == null)
-            {
-                return NotFound();
-            }
-
-            return View(image);
-        }
-
-        // POST: Images/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var image = await _context.Images.FindAsync(id);
-            if (image != null)
-            {
-                _context.Images.Remove(image);
-            }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool ImageExists(int id)
-        {
-            return _context.Images.Any(e => e.Id == id);
-        }
     }
 }

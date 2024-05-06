@@ -1,6 +1,7 @@
 ﻿using akb_master.server.Context;
 using akb_master.server.Models;
 using Microsoft.AspNetCore.Mvc;
+using static akb_master.server.Controllers.CategoryController;
 
 namespace akb_master.server.Controllers
 {
@@ -17,7 +18,7 @@ namespace akb_master.server.Controllers
 
 
 
-
+        //GET
         [HttpGet(Name = "GetAllCategory")]
         public IActionResult GetAllCategory()
         {
@@ -35,17 +36,36 @@ namespace akb_master.server.Controllers
 
 
 
+   
+        //POST
+        [HttpPost(Name = "CreateCategory")]
+        public IActionResult CreateCategory(CategotyDto categoryDto)
+        {
+            Category category = new Category
+            {
+                Id = categoryDto.Id,
+                Name = categoryDto.Name
+            };
+            
+            if (category == null)
+            {
+                // Возвращаем HTTP 400 (Bad Request), если данные категории некорректны
+                return BadRequest();
+            }
 
-        //[HttpPost(Name = "PostCategory")]
-        //public IActionResult PostCategory(string categoryName)
-        //{
-        //    var cat = new Category
-        //    {
-        //        Name = categoryName
-        //    };
-        //    _context.Add(cat);
-        //    _context.SaveChanges();
-        //    return Ok();
-        //}
+            // Добавляем категорию в контекст и сохраняем изменения в базе данных
+            _context.Categories.Add(category);
+            _context.SaveChanges();
+
+            // Возвращаем HTTP 201 (Created) и URL новой категории
+            return CreatedAtRoute("GetCategoryById", new { id = category.Id }, category);
+        }
+        public class CategotyDto            
+        {
+            public int Id { get; set; }
+
+            public string Name { get; set; }
+        }
+
     }
 }

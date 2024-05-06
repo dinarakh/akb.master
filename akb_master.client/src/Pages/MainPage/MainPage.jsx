@@ -1,12 +1,26 @@
 import React, { useState } from "react";
+import axios from "axios";
 
-//Styles
+//Styles Main
 import {
   MainPageStyled,
-  СarouselBrandsCont,
-  SelectionAkb, ContCall, ButtonCall, SelectionAkbContText,
-  BannersCont, BannerFirst, BannerSecond, BannerThird, BannerFourth,
+  СarouselBrandsCont,   
 } from "./Main.styled";
+// Styles Selection
+import {
+  SelectionAkb, SelectionAkbContText, ContCall, ButtonCall
+} from "./SelectionAkb.styled";
+//Styles Banners
+import {
+  BannersCont, BannerFirst, BannerSecond, BannerThird, BannerFourth,
+  FirstBannerText, SecondBannerText, ThirdBannerText
+} from "./Banners.styled";
+// Styles Product
+import {
+   CatalogCont, 
+   FilterCont, SortCont, Sort,
+   ProductCont, ProductBox, ProductName, ProductDescriptionText, ProductCostCont, ProductCost, ProductCostNonT,
+ } from "./Product.styed";
 
 // Global stlyes
 import { GlobalStyled } from "../Global.styled";
@@ -18,10 +32,7 @@ import ReactInputMask from "react-input-mask";
 import Carousel from "../../Components/Carousel/Carousel";
 
 //Image
-import ImageBanner1 from "../../Images/BannerImage/ImageBanner1.jpg";
-import ImageBanner2 from "../../Images/BannerImage/ImageBanner2.png";
-import ImageBanner3 from "../../Images/BannerImage/ImageBanner3.png";
-import ImageBanner4 from "../../Images/BannerImage/ImageBanner4.jpg";
+import TestImage from "../../Images/CarouselImage/Aurora.jpg";
 
 const CallSvg = (
   <svg
@@ -37,55 +48,135 @@ const CallSvg = (
   </svg>
 );
 
-const MainPage = () => {
-  return (
-    <GlobalStyled>
-      <MainPageStyled>
-        <СarouselBrandsCont>
-          {/* не сделаено */}
-          <Carousel/>
-        </СarouselBrandsCont>
+class MainPage extends React.Component{
+  state = {
+    test: []
+  }
+  // componentDidMount(){
+  //   axios.get('https://localhost:7271/Descriptions')
+  //     .then(res => {
+  //       const test = res.data;
+  //       console.log(test);
+  //       this.setState({ test });
+  //     })
+  // }
+    render(){
+      return (
+        <GlobalStyled>
+          <MainPageStyled>
+            {/* Сarousel */}
+            <СarouselBrandsCont>
+              {/* не сделаено */}
+              <Carousel/>
+            </СarouselBrandsCont>
+    
+            <SelectionAkb>
+              <SelectionAkbContText>
+                <p>Подбор аккумулятора специалистом</p>
+                <p>В будни с 9:00 до 19:00, выходные с 10:00 до 18:00</p>
+              </SelectionAkbContText>
+              <ContCall>
+                <ReactInputMask mask="+7(999) 999-9999">
+                {() => <input type="tel" id="phone" placeholder="+7(___) ___-____" />}
+                </ReactInputMask>
+                <ButtonCall>{CallSvg} Оставить номер</ButtonCall>
+              </ContCall>
+              <p>И мы перезвоним в течении дня</p>
+            </SelectionAkb>
+    
+            <BannersCont>
+              <BannerFirst>
+                <FirstBannerText>
+                  При сдаче АКБ (от 60Ah) скидка
+                </FirstBannerText>
+                <SecondBannerText>
+                  от<p className="sum">1000</p>₽ 
+                </SecondBannerText>
+                <ThirdBannerText>
 
-        <SelectionAkb>
-          <SelectionAkbContText>
-            <p>Подбор аккумулятора специалистом</p>
-            <p>В будни с 9:00 до 19:00, выходные с 10:00 до 18:00</p>
-          </SelectionAkbContText>
-          <ContCall>
-            <ReactInputMask mask="+7(999) 999-9999">
-            {() => <input type="tel" id="phone" placeholder="+7(___) ___-____" />}
-            </ReactInputMask>
-            <ButtonCall>{CallSvg} Оставить номер</ButtonCall>
-          </ContCall>
-          <p>И мы перезвоним в течении дня</p>
-        </SelectionAkb>
+                </ThirdBannerText>
+              </BannerFirst>
+    
+              <BannerSecond>
+              <FirstBannerText>
+                Доставка АКБ пр городу 24/7
+              </FirstBannerText>
+              <SecondBannerText>
+                за<p className="sum">0</p>₽ 
+              </SecondBannerText>
+              <ThirdBannerText>
+                Доставим и установим по Уфе аккумулятор за 60 секунд
+              </ThirdBannerText>
+              </BannerSecond>
+    
+              <BannerThird>
+              <FirstBannerText>
+                Диагностика состояния АКБ
+              </FirstBannerText>
+              <SecondBannerText>
+                за<p className="sum">0</p>₽ 
+              </SecondBannerText>
+              <ThirdBannerText>
+                Проверяем основные показатели аккумулятора
+              </ThirdBannerText>
+              </BannerThird>
+            
+              <BannerFourth>
+              <FirstBannerText>
+                Обслуживание аккумулятора
+              </FirstBannerText>
+              <SecondBannerText>
+                от<p className="sum">200</p>₽ 
+              </SecondBannerText>
+              <ThirdBannerText>
+                Проведем полное обслуживание аккумулятора
+              </ThirdBannerText>
+              </BannerFourth>
+    
+            </BannersCont>
+    
+            <CatalogCont>
 
-        <BannersCont>
-          <BannerFirst>
-            {/* <img src={ImageBanner1}/> */}
-            <p>При сдаче АКБ (от 60Ah) скидка - от 1000</p>
-          </BannerFirst>
 
-          <BannerSecond>
-          {/* <img src={ImageBanner2}/> */}
-          <p>Доставка АКБ пр городу 24/7</p>
-          <p>Доставим и установим по Уфе аккумулятор</p>
-          </BannerSecond>
+              <FilterCont>
+                <SortCont>
+                  <Sort>
+                    <p>Test</p>
+                    
+                  </Sort>
+                </SortCont>
+              </FilterCont>
 
-          <BannerThird>
-          {/* <img src={ImageBanner3}/> */}
-          <p>Диагностика состояния АКБ</p>
-          </BannerThird>
 
-          <BannerFourth>
-          {/* <img src={ImageBanner4}/> */}
-          <p>Обслуживание аккумулятора</p>
-          </BannerFourth>
 
-        </BannersCont>
-      </MainPageStyled>
-    </GlobalStyled>
-  );
+              <ProductCont>
+                <ProductBox>
+                  <img src={TestImage}/>
+                  <ProductName>АКБ 6ст-60 Polus Arctic о.п.</ProductName>
+                  <ProductDescriptionText>Емкость: 60Ач</ProductDescriptionText>
+                  <ProductDescriptionText>Пусковой ток: 560А</ProductDescriptionText>
+                  <ProductDescriptionText>Габариты: 242х175х190</ProductDescriptionText>
+                  <ProductDescriptionText>Полярность: Обратная</ProductDescriptionText>
+                  <ProductDescriptionText>Гарантия: 1 Год</ProductDescriptionText>
+                  <ProductCostCont>
+                    <ProductCost>                    
+                      <p className="CostText">Цена с обменом</p>
+                      <p className="Cost">6500</p>
+                    </ProductCost>
+                    <ProductCostNonT>                    
+                      <p className="CostText">Цена без обмена</p>
+                      <p className="Cost">7500</p>
+                    </ProductCostNonT>
+                  </ProductCostCont>
+                </ProductBox>
+              </ProductCont>
+              
+    
+            </CatalogCont>
+          </MainPageStyled>
+        </GlobalStyled>
+      );
+    }
 };
 
 export default MainPage;

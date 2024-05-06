@@ -36,5 +36,35 @@ namespace akb_master.server.Controllers
             return Ok(images);
         }
 
+        //POST
+        [HttpPost(Name = "CreateImage")]
+        public IActionResult CreateImage(ImageDto imageDto)
+        {
+            Image image = new Image
+            {
+                Id = imageDto.Id,
+                Name = imageDto.Name
+            };
+
+            if (image == null)
+            {
+                // Возвращаем HTTP 400 (Bad Request), если данные категории некорректны
+                return BadRequest();
+            }
+
+            // Добавляем категорию в контекст и сохраняем изменения в базе данных
+            _context.Images.Add(image);
+            _context.SaveChanges();
+
+            // Возвращаем HTTP 201 (Created) и URL новой категории
+            return CreatedAtRoute("GetImageById", new { id = image.Id }, image);
+        }
+        public class ImageDto
+        {
+            public int Id { get; set; }
+
+            public string Name { get; set; }
+        }
+
     }
 }

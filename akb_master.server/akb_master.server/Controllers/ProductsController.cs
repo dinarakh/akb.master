@@ -29,9 +29,14 @@ namespace akb_master.server.Controllers
         {
             var productsInfo = _context.Products
                 .Select(p => new
-                {
+                {   
+                    Id = p.Id,
                     Name = p.Name,
-                    Price = p.Price
+                    Price = p.Price,
+                    PriceTrade = p.Price_Trade,
+                    CategoryId = p.CategoryId,
+                    DescriptionId = p.DescriptionId
+
                 })
                 .ToList();
 
@@ -44,36 +49,44 @@ namespace akb_master.server.Controllers
         }
 
 
-        //[HttpGet(Name = "GetAllProducts")]
-        //public IActionResult GetAllProducts()
-        //{
-        //    // Извлекаем все продукты из таблицы
-        //    List<Product> products = _context.Products.ToList();
+        //POST
+        [HttpPost(Name = "CreateProduct")]
+        public IActionResult CreateProduct(ProductDto productDto)
+        {
+            Product product = new Product
+            {
+                Id = productDto.Id,
+                Name = productDto.Name,
+                Price = productDto.Price,
+                Price_Trade = productDto.Price_Trade,
+                CategoryId = productDto.CategoryId,
+                DescriptionId = productDto.DescriptionId
 
-        //    if (products == null || products.Count == 0)
-        //    {
-        //        // Возвращаем HTTP 404 (Not Found), если список продуктов пуст
-        //        return NotFound();
-        //    }
-        //    // Возвращаем список продуктов в формате JSON
-        //    return Ok(products);
-        //}
+            };
 
-        //Возвращаем список информации о продуктах в формате JSON
+            if (product == null)
+            {
+                // Возвращаем HTTP 400 (Bad Request), если данные категории некорректны
+                return BadRequest();
+            }
+
+            // Добавляем категорию в контекст и сохраняем изменения в базе данных
+            _context.Products.Add(product);
+            _context.SaveChanges();
+
+            // Возвращаем HTTP 201 (Created) и URL новой категории
+            return CreatedAtRoute("GetProductById", new { id = product.Id }, product);
 
 
-
-        //[HttpPost(Name = "PostProduct")]
-        //public IActionResult PostProduct(string productName)
-        //{
-        //    var cat = new Product
-        //    {
-        //        Name = productName
-        //    };
-        //    _context.Add(cat);
-        //    _context.SaveChanges();
-        //    return Ok();
-        //}
-
+        }
+        public class ProductDto
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public int Price { get; set; }
+            public int Price_Trade { get; set; }
+            public int CategoryId { get; set; }
+            public int DescriptionId { get; set; }
+        }
     }
 }

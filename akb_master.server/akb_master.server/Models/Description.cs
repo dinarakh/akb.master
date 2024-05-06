@@ -6,6 +6,8 @@ namespace akb_master.server.Models
     public class Description
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int Id { get; set; } 
 
         public string Country { get; set; }

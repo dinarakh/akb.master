@@ -9,6 +9,14 @@ export const HeaderStyle = styled.div`
    //del
     background-color: white;
 
+  .test{
+    display: flex;
+  }
+  .testlink{
+    padding: 0 5px;
+  }
+  
+
 `;
 export const NavbarTop = styled.div`
 background-color: #f2f5f7;

@@ -2,11 +2,8 @@ import styled from "styled-components";
 import css from "styled-components";
 
 export const GlobalStyled = styled.div`
-  * {
-    margin: 0;
-    padding: 0;
-  }
   font-family: 'Gilroy', sans-serif;
+  margin: 0;
 `;
 
 export const MenuItemsText = styled.p`

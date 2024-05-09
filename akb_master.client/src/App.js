@@ -1,17 +1,16 @@
 import React from "react";
-
-
-// Pages
+import { BrowserRouter as Router } from "react-router-dom";
+import { AppRoutes } from "./Router";
 import HeaderComponents from "./Components/Header/HeaderComponents";
-import MainPage from "./Pages/MainPage/MainPage";
 
-const App = () =>{
-  return(
-    <div>
-      <HeaderComponents/>
-      <MainPage/>
-    </div>
+
+
+export default function App() {
+  return (
+    <>
+    <Router>
+          <AppRoutes />
+      </Router>
+    </>
   );
 }
-
-export default App;

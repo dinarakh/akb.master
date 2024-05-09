@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 //Styles
 import {
@@ -113,6 +114,11 @@ const HeaderComponents = () => {
 
         <ContMedia></ContMedia>
       </NavbarBottom>
+
+      <div className="test">
+        <Link className="testlink" to="/">asd</Link>
+        <Link className="testlink" to="/test">asd</Link>
+      </div>
     </HeaderStyle>
   );
 };

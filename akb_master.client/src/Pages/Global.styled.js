@@ -11,4 +11,8 @@ export const MenuItemsText = styled.p`
   font-weight: bold;
   letter-spacing: 2px;
   font-family: 'Gilroy', sans-serif;
+  a{
+    text-decoration: none;
+    color: black;
+  }
 `;

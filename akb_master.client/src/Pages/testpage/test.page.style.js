@@ -3,12 +3,30 @@ import {css} from 'styled-components'
 
 
 export const MainPageStyled = styled.div`
-  background-color: black;
-`;
+  background-color: bisque;
 
-export const СarouselBrandsCont = styled.div`
-  /* del */
-  height: 100px;
-  padding: 10px 12%;
-
+  /* Decktop 1920 */
+  ${(props) =>
+    props.Desktop &&
+    css`
+     background-color: green;
+    `}
+  /* Notebook 1280*/
+${(props) =>
+    props.Notebook &&
+    css`
+    background-color: red;
+    `}
+/* Tablet 960*/
+${(props) =>
+    props.Tablet &&
+    css`
+    background-color: blue;
+    `}
+/* Mobile 600*/
+${(props) =>
+    props.Mobile &&
+    css`
+    background-color: yellow;
+    `}
 `;

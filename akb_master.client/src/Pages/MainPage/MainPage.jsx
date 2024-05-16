@@ -6,15 +6,18 @@ import {
   MainPageStyled,
   СarouselBrandsCont,   
 } from "./Main.styled";
+
 // Styles Selection
 import {
   SelectionAkb, SelectionAkbContText, ContCall, ButtonCall
 } from "./SelectionAkb.styled";
+
 //Styles Banners
 import {
   BannersCont, BannerFirst, BannerSecond, BannerThird, BannerFourth,
   FirstBannerText, SecondBannerText, ThirdBannerText
 } from "./Banners.styled";
+
 // Styles Product
 import {
    CatalogCont, 
@@ -27,12 +30,14 @@ import { GlobalStyled } from "../Global.styled";
 
 //npm 
 import ReactInputMask from "react-input-mask";
+import { useMediaQuery } from "@mui/material";
 
 //Copmonents
 import Carousel from "../../Components/Carousel/Carousel";
 
 //Image
 import TestImage from "../../Images/CarouselImage/Aurora.jpg";
+
 
 const CallSvg = (
   <svg
@@ -48,21 +53,48 @@ const CallSvg = (
   </svg>
 );
 
+
+
 class MainPage extends React.Component{
   state = {
     test: []
   }
-  // componentDidMount(){
-  //   axios.get('https://localhost:7271/Descriptions')
-  //     .then(res => {
-  //       const test = res.data;
-  //       console.log(test);
-  //       this.setState({ test });
-  //     })
-  // }
+  adaptiv = {
+    isLargeDesktop: false,
+    isDesktop: false,
+    isNotebook: false,
+    isTablet: false,
+    isMobile: false,
+  }
+  componentDidMount(){
+    // axios.get('https://localhost:7271/Descriptions')
+    //   .then(res => {
+    //     const test = res.data;
+    //     console.log(test);
+    //     this.setState({ test });
+    //   })
+    this.updateMediaQueries();
+    window.addEventListener("resize", this.updateMediaQueries);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateMediaQueries);
+  }
+
+  updateMediaQueries = () => {
+    const isLargeDesktop = window.matchMedia("(min-width: 1920px)").matches;
+    const isDesktop = window.matchMedia("(min-width: 1280px) and (max-width: 1919px)").matches;
+    const isNotebook = window.matchMedia("(min-width: 960px) and (max-width: 1279px)").matches;
+    const isTablet = window.matchMedia("(min-width: 600px) and (max-width: 959px)").matches;
+    const isMobile = window.matchMedia("(max-width: 599px)").matches;
+
+    this.setState({
+      isLargeDesktop,isDesktop,isNotebook,isTablet,isMobile,
+    });
+  };
     render(){
+      const { isLargeDesktop, isDesktop, isNotebook, isTablet, isMobile } = this.adaptiv;
       return (
-        <GlobalStyled>
+        <GlobalStyled >
           <MainPageStyled>
             {/* Сarousel */}
             <СarouselBrandsCont>
@@ -135,9 +167,7 @@ class MainPage extends React.Component{
     
             </BannersCont>
     
-            <CatalogCont>
-
-
+            <CatalogCont Desktop={isDesktop} Notebook={isNotebook} Tablet={isTablet} Mobile={isMobile}>
               <FilterCont>
                 <SortCont>
                   <Sort>
@@ -169,6 +199,88 @@ class MainPage extends React.Component{
                     </ProductCostNonT>
                   </ProductCostCont>
                 </ProductBox>
+
+                <ProductBox>
+                  <img src={TestImage}/>
+                  <ProductName>АКБ 6ст-60 Polus Arctic о.п.</ProductName>
+                  <ProductDescriptionText>Емкость: 60Ач</ProductDescriptionText>
+                  <ProductDescriptionText>Пусковой ток: 560А</ProductDescriptionText>
+                  <ProductDescriptionText>Габариты: 242х175х190</ProductDescriptionText>
+                  <ProductDescriptionText>Полярность: Обратная</ProductDescriptionText>
+                  <ProductDescriptionText>Гарантия: 1 Год</ProductDescriptionText>
+                  <ProductCostCont>
+                    <ProductCost>                    
+                      <p className="CostText">Цена с обменом</p>
+                      <p className="Cost">6500</p>
+                    </ProductCost>
+                    <ProductCostNonT>                    
+                      <p className="CostText">Цена без обмена</p>
+                      <p className="Cost">7500</p>
+                    </ProductCostNonT>
+                  </ProductCostCont>
+                </ProductBox>
+
+                <ProductBox>
+                  <img src={TestImage}/>
+                  <ProductName>АКБ 6ст-60 Polus Arctic о.п.</ProductName>
+                  <ProductDescriptionText>Емкость: 60Ач</ProductDescriptionText>
+                  <ProductDescriptionText>Пусковой ток: 560А</ProductDescriptionText>
+                  <ProductDescriptionText>Габариты: 242х175х190</ProductDescriptionText>
+                  <ProductDescriptionText>Полярность: Обратная</ProductDescriptionText>
+                  <ProductDescriptionText>Гарантия: 1 Год</ProductDescriptionText>
+                  <ProductCostCont>
+                    <ProductCost>                    
+                      <p className="CostText">Цена с обменом</p>
+                      <p className="Cost">6500</p>
+                    </ProductCost>
+                    <ProductCostNonT>                    
+                      <p className="CostText">Цена без обмена</p>
+                      <p className="Cost">7500</p>
+                    </ProductCostNonT>
+                  </ProductCostCont>
+                </ProductBox>
+
+                <ProductBox>
+                  <img src={TestImage}/>
+                  <ProductName>АКБ 6ст-60 Polus Arctic о.п.</ProductName>
+                  <ProductDescriptionText>Емкость: 60Ач</ProductDescriptionText>
+                  <ProductDescriptionText>Пусковой ток: 560А</ProductDescriptionText>
+                  <ProductDescriptionText>Габариты: 242х175х190</ProductDescriptionText>
+                  <ProductDescriptionText>Полярность: Обратная</ProductDescriptionText>
+                  <ProductDescriptionText>Гарантия: 1 Год</ProductDescriptionText>
+                  <ProductCostCont>
+                    <ProductCost>                    
+                      <p className="CostText">Цена с обменом</p>
+                      <p className="Cost">6500</p>
+                    </ProductCost>
+                    <ProductCostNonT>                    
+                      <p className="CostText">Цена без обмена</p>
+                      <p className="Cost">7500</p>
+                    </ProductCostNonT>
+                  </ProductCostCont>
+                </ProductBox>
+
+                <ProductBox>
+                  <img src={TestImage}/>
+                  <ProductName>АКБ 6ст-60 Polus Arctic о.п.</ProductName>
+                  <ProductDescriptionText>Емкость: 60Ач</ProductDescriptionText>
+                  <ProductDescriptionText>Пусковой ток: 560А</ProductDescriptionText>
+                  <ProductDescriptionText>Габариты: 242х175х190</ProductDescriptionText>
+                  <ProductDescriptionText>Полярность: Обратная</ProductDescriptionText>
+                  <ProductDescriptionText>Гарантия: 1 Год</ProductDescriptionText>
+                  <ProductCostCont>
+                    <ProductCost>                    
+                      <p className="CostText">Цена с обменом</p>
+                      <p className="Cost">6500</p>
+                    </ProductCost>
+                    <ProductCostNonT>                    
+                      <p className="CostText">Цена без обмена</p>
+                      <p className="Cost">7500</p>
+                    </ProductCostNonT>
+                  </ProductCostCont>
+                </ProductBox>
+
+                
               </ProductCont>
               
     

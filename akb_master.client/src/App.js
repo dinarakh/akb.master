@@ -1,16 +1,19 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AppRoutes } from "./Router";
-import HeaderComponents from "./Components/Header/HeaderComponents";
 
-
+import theme from "./Pages/theme";
+import { ThemeProvider } from "@mui/material";
+import {CssBaseline} from "@mui/material";
 
 export default function App() {
   return (
-    <>
-    <Router>
+    <ThemeProvider theme={theme}>
+      <CssBaseline>
+        <Router>
           <AppRoutes />
-      </Router>
-    </>
+        </Router>
+      </CssBaseline>
+    </ThemeProvider>
   );
 }

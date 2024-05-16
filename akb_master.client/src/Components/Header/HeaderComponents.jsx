@@ -99,26 +99,31 @@ const HeaderComponents = () => {
         <p> г.Уфа, ул. Комсомольская д. 58</p>
 
         <ContContact>
-        <p>Akbmaster102@yandex.ru</p>
-        <p className="Num">+7 (906)-100-84-42</p>
+          <p>Akbmaster102@yandex.ru</p>
+          <p className="Num">+7 (906)-100-84-42</p>
         </ContContact>
       </NavbarTop>
 
       <NavbarBottom>
-        {logo}
+        <Link to="/">
+          {logo}
+        </Link>
         <ContLink>
-          <MenuItemsText>Каталог</MenuItemsText>
+          <MenuItemsText>
+            <Link to="/privacy">
+              Каталог
+            </Link>
+          </MenuItemsText>
           <MenuItemsText>Услуги</MenuItemsText>
-          <MenuItemsText>Контакты</MenuItemsText>
+          <MenuItemsText>
+            <Link to="/contact">
+              Контакты
+            </Link>
+          </MenuItemsText>
         </ContLink>
 
         <ContMedia></ContMedia>
       </NavbarBottom>
-
-      <div className="test">
-        <Link className="testlink" to="/">asd</Link>
-        <Link className="testlink" to="/test">asd</Link>
-      </div>
     </HeaderStyle>
   );
 };

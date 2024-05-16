@@ -3,16 +3,14 @@ import { css } from "styled-components";
 
 export const CatalogCont = styled.div`
   display: grid;
-  grid-template-columns: 0.3fr 1fr;
+  grid-template-columns: 0.25fr 1fr;
   padding: 5px 12%;
   border-radius: 3px;
   background-color: rgb(230, 230, 230);
+  
 `;
 
 export const FilterCont = styled.div`
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-
   //del
   background-color: white;
 `;
@@ -37,7 +35,7 @@ export const ProductCont = styled.div`
 `;
 
 export const ProductBox = styled.div`
-  margin: 10px 10px;
+  margin: 10px 8px;
   border-radius: 2px;
   background-color: white;
   img {

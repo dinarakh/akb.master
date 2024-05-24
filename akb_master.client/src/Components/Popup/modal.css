@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .modal {
+    display: none; /* Изначально скрыто */
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    transform: scale(1);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0; /* Изначально невидимо */
+  }
+  
+  .modal_active {
+    display: flex; /* Отображение при активации */
+    opacity: 1; /* Видимо при активации */
+  }
+  
+  .modal__content {
+    display: flex;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: white; /* Меняем цвет фона для лучшей читаемости */
+    color: black; /* Цвет текста */
+    position: relative;
+  }
+  
+  .modal__close-button {
+    position: absolute;
+    top: -30px;
+    right: -20px;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  

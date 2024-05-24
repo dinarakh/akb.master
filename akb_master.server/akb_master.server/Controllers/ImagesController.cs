@@ -36,34 +36,83 @@ namespace akb_master.server.Controllers
             return Ok(images);
         }
 
-        //POST
-        [HttpPost(Name = "CreateImage")]
-        public IActionResult CreateImage(ImageDto imageDto)
-        {
-            Image image = new Image
-            {
-                Id = imageDto.Id,
-                Name = imageDto.Name
-            };
 
-            if (image == null)
+        // POST
+
+        //[HttpPost("upload")]
+        //public async Task<IActionResult> UploadImage([FromForm] IFormFile file)
+        //{
+        //    if (file == null || file.Length == 0)
+        //        return BadRequest("No file uploaded.");
+
+        //    var imageGuid = Guid.NewGuid();
+        //    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images", $"{imageGuid}.jpg");
+
+        //    using (var stream = new FileStream(filePath, FileMode.Create))
+        //    {
+        //        await file.CopyToAsync(stream);
+        //    }
+
+        //    var image = new Image
+        //    {
+        //        ImageGuid = imageGuid
+        //    };
+
+        //    _context.Images.Add(image);
+        //    await _context.SaveChangesAsync();
+
+        //    return Ok(new { image.Id, image.Name });
+        //}
+
+        //[HttpPost(Name = "CreateImage")]
+        //public async Task<IActionResult> CreateImage([FromBody] ImageDto imageDto)
+        //{
+        //    if (imageDto == null || !ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    var image = new Image
+        //    {
+        //        ImageGuid = Guid.NewGuid() // Генерируем новый Guid для изображения
+        //    };
+
+        //    _context.Images.Add(image);
+        //    await _context.SaveChangesAsync();
+
+        //    return CreatedAtRoute("GetImageById", new { id = image.Id }, image);
+        //}
+
+        //public class ImageDto
+        //{
+        //    public int Id { get; set; }
+        //}
+
+
+
+        [HttpPost("upload")]
+        public async Task<IActionResult> UploadImage([FromForm] IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return BadRequest("No file uploaded.");
+
+            var imageGuid = Guid.NewGuid();
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images", $"{imageGuid}.jpg");
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
             {
-                // Возвращаем HTTP 400 (Bad Request), если данные категории некорректны
-                return BadRequest();
+                await file.CopyToAsync(stream);
             }
 
-            // Добавляем категорию в контекст и сохраняем изменения в базе данных
+            var image = new Image
+            {
+                ImageGuid = imageGuid
+            };
+
             _context.Images.Add(image);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
-            // Возвращаем HTTP 201 (Created) и URL новой категории
             return CreatedAtRoute("GetImageById", new { id = image.Id }, image);
-        }
-        public class ImageDto
-        {
-            public int Id { get; set; }
-
-            public string Name { get; set; }
         }
 
     }

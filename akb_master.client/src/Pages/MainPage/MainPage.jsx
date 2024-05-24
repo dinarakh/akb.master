@@ -67,12 +67,12 @@ class MainPage extends React.Component{
     isMobile: false,
   }
   componentDidMount(){
-    // axios.get('https://localhost:7271/Descriptions')
-    //   .then(res => {
-    //     const test = res.data;
-    //     console.log(test);
-    //     this.setState({ test });
-    //   })
+    axios.get('https://localhost:7271/Descriptions')
+      .then(res => {
+        const test = res.data;
+        console.log(test);
+        this.setState({ test });
+      })
     this.updateMediaQueries();
     window.addEventListener("resize", this.updateMediaQueries);
   }
@@ -279,6 +279,64 @@ class MainPage extends React.Component{
                     </ProductCostNonT>
                   </ProductCostCont>
                 </ProductBox>
+                <ProductBox>
+                  <img src={TestImage}/>
+                  <ProductName>АКБ 6ст-60 Polus Arctic о.п.</ProductName>
+                  <ProductDescriptionText>Емкость: 60Ач</ProductDescriptionText>
+                  <ProductDescriptionText>Пусковой ток: 560А</ProductDescriptionText>
+                  <ProductDescriptionText>Габариты: 242х175х190</ProductDescriptionText>
+                  <ProductDescriptionText>Полярность: Обратная</ProductDescriptionText>
+                  <ProductDescriptionText>Гарантия: 1 Год</ProductDescriptionText>
+                  <ProductCostCont>
+                    <ProductCost>                    
+                      <p className="CostText">Цена с обменом</p>
+                      <p className="Cost">6500</p>
+                    </ProductCost>
+                    <ProductCostNonT>                    
+                      <p className="CostText">Цена без обмена</p>
+                      <p className="Cost">7500</p>
+                    </ProductCostNonT>
+                  </ProductCostCont>
+                </ProductBox>
+                <ProductBox>
+                  <img src={TestImage}/>
+                  <ProductName>АКБ 6ст-60 Polus Arctic о.п.</ProductName>
+                  <ProductDescriptionText>Емкость: 60Ач</ProductDescriptionText>
+                  <ProductDescriptionText>Пусковой ток: 560А</ProductDescriptionText>
+                  <ProductDescriptionText>Габариты: 242х175х190</ProductDescriptionText>
+                  <ProductDescriptionText>Полярность: Обратная</ProductDescriptionText>
+                  <ProductDescriptionText>Гарантия: 1 Год</ProductDescriptionText>
+                  <ProductCostCont>
+                    <ProductCost>                    
+                      <p className="CostText">Цена с обменом</p>
+                      <p className="Cost">6500</p>
+                    </ProductCost>
+                    <ProductCostNonT>                    
+                      <p className="CostText">Цена без обмена</p>
+                      <p className="Cost">7500</p>
+                    </ProductCostNonT>
+                  </ProductCostCont>
+                </ProductBox>
+                <ProductBox>
+                  <img src={TestImage}/>
+                  <ProductName>АКБ 6ст-60 Polus Arctic о.п.</ProductName>
+                  <ProductDescriptionText>Емкость: 60Ач</ProductDescriptionText>
+                  <ProductDescriptionText>Пусковой ток: 560А</ProductDescriptionText>
+                  <ProductDescriptionText>Габариты: 242х175х190</ProductDescriptionText>
+                  <ProductDescriptionText>Полярность: Обратная</ProductDescriptionText>
+                  <ProductDescriptionText>Гарантия: 1 Год</ProductDescriptionText>
+                  <ProductCostCont>
+                    <ProductCost>                    
+                      <p className="CostText">Цена с обменом</p>
+                      <p className="Cost">6500</p>
+                    </ProductCost>
+                    <ProductCostNonT>                    
+                      <p className="CostText">Цена без обмена</p>
+                      <p className="Cost">7500</p>
+                    </ProductCostNonT>
+                  </ProductCostCont>
+                </ProductBox>
+                
 
                 
               </ProductCont>

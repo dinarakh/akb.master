@@ -12,7 +12,10 @@ namespace akb_master.server.Models
         [Column("Image")]
         public Guid? ImageGuid { get; set; }
         public string Name => ImageGuid == null ? "/Images/default.jpg" : $"../Images/{ImageGuid}.jpg";
+        public int ByteImage { get; set; }
+        public byte[] OByteImage { get; set; }
 
         public ICollection<ProductImage> ProductImages { get; set;}
     }
 }
+

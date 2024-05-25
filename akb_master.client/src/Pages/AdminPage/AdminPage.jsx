@@ -61,52 +61,54 @@ const NumberSvg = (
 );
 
 class AdminPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLargeDesktop: false,
-      isDesktop: false,
-      isNotebook: false,
-      isTablet: false,
-      isMobile: false,
-      modalActive: false,
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     isLargeDesktop: false,
+  //     isDesktop: false,
+  //     isNotebook: false,
+  //     isTablet: false,
+  //     isMobile: false,
+  //     modalActive: false,
+  //   };
+  // }
 
-  componentDidMount() {
-    this.updateMediaQueries();
-    window.addEventListener("resize", this.updateMediaQueries);
-  }
+  // componentDidMount() {
+  //   this.updateMediaQueries();
+  //   window.addEventListener("resize", this.updateMediaQueries);
+  // }
 
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updateMediaQueries);
-  }
+  // componentWillUnmount() {
+  //   window.removeEventListener("resize", this.updateMediaQueries);
+  // }
 
-  updateMediaQueries = () => {
-    const isLargeDesktop = window.matchMedia("(min-width: 1920px)").matches;
-    const isDesktop = window.matchMedia(
-      "(min-width: 1280px) and (max-width: 1919px)"
-    ).matches;
-    const isNotebook = window.matchMedia(
-      "(min-width: 960px) and (max-width: 1279px)"
-    ).matches;
-    const isTablet = window.matchMedia(
-      "(min-width: 600px) and (max-width: 959px)"
-    ).matches;
-    const isMobile = window.matchMedia("(max-width: 599px)").matches;
+  // updateMediaQueries = () => {
+  //   const isLargeDesktop = window.matchMedia("(min-width: 1920px)").matches;
+  //   const isDesktop = window.matchMedia(
+  //     "(min-width: 1280px) and (max-width: 1919px)"
+  //   ).matches;
+  //   const isNotebook = window.matchMedia(
+  //     "(min-width: 960px) and (max-width: 1279px)"
+  //   ).matches;
+  //   const isTablet = window.matchMedia(
+  //     "(min-width: 600px) and (max-width: 959px)"
+  //   ).matches;
+  //   const isMobile = window.matchMedia("(max-width: 599px)").matches;
 
-    this.setState({
-      isLargeDesktop,
-      isDesktop,
-      isNotebook,
-      isTablet,
-      isMobile,
-    });
-  };
+  //   this.setState({
+  //     isLargeDesktop,
+  //     isDesktop,
+  //     isNotebook,
+  //     isTablet,
+  //     isMobile,
+  //   });
+  // };
 
-  setModalActive = (modalActive) => {
-    this.setState({ modalActive });
-  };
+  // setModalActive = (modalActive) => {
+  //   this.setState({ modalActive });
+  // };
+
+  // post image
   state = {
     selectedFile: null,
     uploadStatus: "",
@@ -146,12 +148,12 @@ class AdminPage extends Component {
       }
     } catch (error) {
       this.setState({ uploadStatus: "Error uploading image." });
-      console.error("Error uploading image:", error);
+      console.error("Error uploading image:", /*error*/ this.state);
     }
   };
 
   render() {
-    const { isLargeDesktop, isDesktop, isNotebook, isTablet, isMobile, modalActive } = this.state;
+    // const { isLargeDesktop, isDesktop, isNotebook, isTablet, isMobile, modalActive } = this.state;
     const { uploadStatus } = this.state;
     return (
       <AdminPageStyled>
@@ -167,12 +169,12 @@ class AdminPage extends Component {
             </MenuButtonCont>
           </MenuCont>
           <ProductCont>
-            <MenuButton onClick={() => this.setModalActive(true)}>
+            {/* <MenuButton onClick={() => this.setModalActive(true)}>
               добавить
             </MenuButton>
             <Modal active={modalActive} setActive={this.setModalActive}>
               <AddProduct />
-            </Modal>
+            </Modal> */}
             <div>
         <form onSubmit={this.handleSubmit}>
           <input type="file" onChange={this.handleFileChange} />

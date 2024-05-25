@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using akb_master.server.Context;
 using akb_master.server.Models;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace akb_master.server.Controllers
 {
@@ -37,82 +38,45 @@ namespace akb_master.server.Controllers
         }
 
 
-        // POST
-
-        //[HttpPost("upload")]
-        //public async Task<IActionResult> UploadImage([FromForm] IFormFile file)
-        //{
-        //    if (file == null || file.Length == 0)
-        //        return BadRequest("No file uploaded.");
-
-        //    var imageGuid = Guid.NewGuid();
-        //    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images", $"{imageGuid}.jpg");
-
-        //    using (var stream = new FileStream(filePath, FileMode.Create))
-        //    {
-        //        await file.CopyToAsync(stream);
-        //    }
-
-        //    var image = new Image
-        //    {
-        //        ImageGuid = imageGuid
-        //    };
-
-        //    _context.Images.Add(image);
-        //    await _context.SaveChangesAsync();
-
-        //    return Ok(new { image.Id, image.Name });
-        //}
-
-        //[HttpPost(Name = "CreateImage")]
-        //public async Task<IActionResult> CreateImage([FromBody] ImageDto imageDto)
-        //{
-        //    if (imageDto == null || !ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    var image = new Image
-        //    {
-        //        ImageGuid = Guid.NewGuid() // Генерируем новый Guid для изображения
-        //    };
-
-        //    _context.Images.Add(image);
-        //    await _context.SaveChangesAsync();
-
-        //    return CreatedAtRoute("GetImageById", new { id = image.Id }, image);
-        //}
-
-        //public class ImageDto
-        //{
-        //    public int Id { get; set; }
-        //}
-
-
-
+        //POST
         [HttpPost("upload")]
-        public async Task<IActionResult> UploadImage([FromForm] IFormFile file)
-        {
+        public async Task<IActionResult> UploadImage( IFormFile file)
+        {  
+
             if (file == null || file.Length == 0)
                 return BadRequest("No file uploaded.");
-
             var imageGuid = Guid.NewGuid();
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images", $"{imageGuid}.jpg");
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), $"{imageGuid}.jpg");
 
-            using (var stream = new FileStream(filePath, FileMode.Create))
+            var memoryStream = new MemoryStream();
+            await file.CopyToAsync(memoryStream);
+            byte[] byteArray = memoryStream.ToArray();
+
+            try
             {
-                await file.CopyToAsync(stream);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                var image = new Image
+                {
+                    Id = 12,
+                    ImageGuid = imageGuid,
+                    ByteImage = 228,
+                    OByteImage = byteArray,
+                };
+
+                _context.Images.Add(image);
+                await _context.SaveChangesAsync();
+
+                return CreatedAtRoute("GetImageById", new { id = image.Id }, image);
             }
-
-            var image = new Image
+            catch (Exception exc)
             {
-                ImageGuid = imageGuid
-            };
-
-            _context.Images.Add(image);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtRoute("GetImageById", new { id = image.Id }, image);
+                Console.WriteLine(exc);
+            }
+            return Ok();
         }
 
     }

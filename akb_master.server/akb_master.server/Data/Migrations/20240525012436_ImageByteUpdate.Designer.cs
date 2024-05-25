@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using akb_master.server.Context;
@@ -11,9 +12,11 @@ using akb_master.server.Context;
 namespace akb_master.server.Data.Migrations
 {
     [DbContext(typeof(ApplicationContextDb))]
-    partial class ApplicationContextDbModelSnapshot : ModelSnapshot
+    [Migration("20240525012436_ImageByteUpdate")]
+    partial class ImageByteUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,16 +112,13 @@ namespace akb_master.server.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ByteImage")
-                        .HasColumnType("integer");
+                    b.Property<byte[]>("ByteImage")
+                        .IsRequired()
+                        .HasColumnType("bytea");
 
                     b.Property<Guid?>("ImageGuid")
                         .HasColumnType("uuid")
                         .HasColumnName("Image");
-
-                    b.Property<byte[]>("OByteImage")
-                        .IsRequired()
-                        .HasColumnType("bytea");
 
                     b.HasKey("Id");
 

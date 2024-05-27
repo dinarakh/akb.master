@@ -40,13 +40,13 @@ namespace akb_master.server.Controllers
 
         //POST
         [HttpPost("upload")]
-        public async Task<IActionResult> UploadImage( IFormFile file)
-        {  
+        public async Task<IActionResult> UploadImage(IFormFile file)
+        {
 
             if (file == null || file.Length == 0)
                 return BadRequest("No file uploaded.");
             var imageGuid = Guid.NewGuid();
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), $"{imageGuid}.jpg");
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Images", $"{imageGuid}.jpg");
 
             var memoryStream = new MemoryStream();
             await file.CopyToAsync(memoryStream);
@@ -61,14 +61,14 @@ namespace akb_master.server.Controllers
 
                 var image = new Image
                 {
-                    Id = 12,
+                    //Id = 2,
                     ImageGuid = imageGuid,
-                    ByteImage = 228,
-                    OByteImage = byteArray,
+                    ByteImage = byteArray,
                 };
 
                 _context.Images.Add(image);
                 await _context.SaveChangesAsync();
+
 
                 return CreatedAtRoute("GetImageById", new { id = image.Id }, image);
             }

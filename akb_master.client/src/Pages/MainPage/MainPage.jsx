@@ -1,49 +1,62 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 //Styles Main
-import {
-  MainPageStyled,
-  СarouselBrandsCont,   
-} from "./Main.styled";
+import { MainPageStyled, СarouselBrandsCont } from "./Main.styled";
 
 // Styles Selection
 import {
-  SelectionAkb, SelectionAkbContText, ContCall, ButtonCall
+  SelectionAkb,
+  SelectionAkbContText,
+  ContCall,
+  ButtonCall,
 } from "./SelectionAkb.styled";
 
 //Styles Banners
 import {
-  BannersCont, BannerFirst, BannerSecond, BannerThird, BannerFourth,
-  FirstBannerText, SecondBannerText, ThirdBannerText
+  BannersCont,
+  BannerFirst,
+  BannerSecond,
+  BannerThird,
+  BannerFourth,
+  FirstBannerText,
+  SecondBannerText,
+  ThirdBannerText,
 } from "./Banners.styled";
 
 // Styles Product
 import {
-   CatalogCont, 
-   FilterCont, SortCont, Sort,
-   ProductCont, ProductBox, ProductName, ProductDescriptionText, ProductCostCont, ProductCost, ProductCostNonT,
- } from "./Product.styed";
+  CatalogCont,
+  FilterCont,
+  SortCont,
+  Sort,
+  ProductCont,
+  ProductBox,
+  ProductName,
+  ProductDescriptionText,
+  ProductCostCont,
+  ProductCost,
+  ProductCostNonT,
+} from "./Product.styed";
 
-// Global stlyes
+// Global styles
 import { GlobalStyled } from "../Global.styled";
 
-//npm 
+//npm
 import ReactInputMask from "react-input-mask";
 import { useMediaQuery } from "@mui/material";
 
-//Copmonents
+//Components
 import Carousel from "../../Components/Carousel/Carousel";
 
 //Image
 import TestImage from "../../Images/CarouselImage/Aurora.jpg";
 
-
 const CallSvg = (
   <svg
     stroke="currentColor"
     fill="currentColor"
-    stroke-width="0"
+    strokeWidth="0"
     viewBox="0 0 512 512"
     height="1em"
     width="1em"
@@ -53,32 +66,40 @@ const CallSvg = (
   </svg>
 );
 
-
-
-class MainPage extends React.Component{
+class MainPage extends React.Component {
   state = {
-    test: []
-  }
-  adaptiv = {
+    images: [],
     isLargeDesktop: false,
     isDesktop: false,
     isNotebook: false,
     isTablet: false,
     isMobile: false,
-  }
-  componentDidMount(){
-    axios.get('https://localhost:7271/Descriptions')
-      .then(res => {
-        const test = res.data;
-        console.log(test);
-        this.setState({ test });
-      })
+  };
+
+
+  componentDidMount() {
+    this.fetchImages();
     this.updateMediaQueries();
     window.addEventListener("resize", this.updateMediaQueries);
   }
+
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateMediaQueries);
   }
+
+  fetchImages = async () => {
+    try {
+      const res = await axios.get("https://localhost:7271/Images");
+      const images = res.data.map(image => {
+        const blob = new Blob([new Uint8Array(image.byteImage)], { type: "image/jpg" });
+        const url = URL.createObjectURL(blob);
+        return { id: image.id, url };
+      });
+      this.setState({ images });
+    } catch (error) {
+      console.error("Error fetching images:", error);
+    }
+  };
 
   updateMediaQueries = () => {
     const isLargeDesktop = window.matchMedia("(min-width: 1920px)").matches;
@@ -88,265 +109,101 @@ class MainPage extends React.Component{
     const isMobile = window.matchMedia("(max-width: 599px)").matches;
 
     this.setState({
-      isLargeDesktop,isDesktop,isNotebook,isTablet,isMobile,
+      isLargeDesktop,
+      isDesktop,
+      isNotebook,
+      isTablet,
+      isMobile,
     });
   };
-    render(){
-      const { isLargeDesktop, isDesktop, isNotebook, isTablet, isMobile } = this.adaptiv;
-      return (
-        <GlobalStyled >
-          <MainPageStyled>
-            {/* Сarousel */}
-            <СarouselBrandsCont>
-              {/* не сделаено */}
-              <Carousel/>
-            </СarouselBrandsCont>
-    
-            <SelectionAkb>
-              <SelectionAkbContText>
-                <p>Подбор аккумулятора специалистом</p>
-                <p>В будни с 9:00 до 19:00, выходные с 10:00 до 18:00</p>
-              </SelectionAkbContText>
-              <ContCall>
-                <ReactInputMask mask="+7(999) 999-9999">
+
+  render() {
+    const { isLargeDesktop, isDesktop, isNotebook, isTablet, isMobile } = this.state;
+    const {images} = this.state;
+
+    return (
+      <GlobalStyled>
+        <MainPageStyled>
+          {/* Сarousel */}
+          <СarouselBrandsCont>
+            <Carousel />
+          </СarouselBrandsCont>
+
+          <SelectionAkb>
+            <SelectionAkbContText>
+              <p>Подбор аккумулятора специалистом</p>
+              <p>В будни с 9:00 до 19:00, выходные с 10:00 до 18:00</p>
+            </SelectionAkbContText>
+            <ContCall>
+              <ReactInputMask mask="+7(999) 999-9999">
                 {() => <input type="tel" id="phone" placeholder="+7(___) ___-____" />}
-                </ReactInputMask>
-                <ButtonCall>{CallSvg} Оставить номер</ButtonCall>
-              </ContCall>
-              <p>И мы перезвоним в течении дня</p>
-            </SelectionAkb>
-    
-            <BannersCont>
-              <BannerFirst>
-                <FirstBannerText>
-                  При сдаче АКБ (от 60Ah) скидка
-                </FirstBannerText>
-                <SecondBannerText>
-                  от<p className="sum">1000</p>₽ 
-                </SecondBannerText>
-                <ThirdBannerText>
+              </ReactInputMask>
+              <ButtonCall>{CallSvg} Оставить номер</ButtonCall>
+            </ContCall>
+            <p>И мы перезвоним в течение дня</p>
+          </SelectionAkb>
 
-                </ThirdBannerText>
-              </BannerFirst>
-    
-              <BannerSecond>
-              <FirstBannerText>
-                Доставка АКБ пр городу 24/7
-              </FirstBannerText>
-              <SecondBannerText>
-                за<p className="sum">0</p>₽ 
-              </SecondBannerText>
-              <ThirdBannerText>
-                Доставим и установим по Уфе аккумулятор за 60 секунд
-              </ThirdBannerText>
-              </BannerSecond>
-    
-              <BannerThird>
-              <FirstBannerText>
-                Диагностика состояния АКБ
-              </FirstBannerText>
-              <SecondBannerText>
-                за<p className="sum">0</p>₽ 
-              </SecondBannerText>
-              <ThirdBannerText>
-                Проверяем основные показатели аккумулятора
-              </ThirdBannerText>
-              </BannerThird>
-            
-              <BannerFourth>
-              <FirstBannerText>
-                Обслуживание аккумулятора
-              </FirstBannerText>
-              <SecondBannerText>
-                от<p className="sum">200</p>₽ 
-              </SecondBannerText>
-              <ThirdBannerText>
-                Проведем полное обслуживание аккумулятора
-              </ThirdBannerText>
-              </BannerFourth>
-    
-            </BannersCont>
-    
-            <CatalogCont Desktop={isDesktop} Notebook={isNotebook} Tablet={isTablet} Mobile={isMobile}>
-              <FilterCont>
-                <SortCont>
-                  <Sort>
-                    <p>Test</p>
-                    
-                  </Sort>
-                </SortCont>
-              </FilterCont>
+          <BannersCont>
+            <BannerFirst>
+              <FirstBannerText>При сдаче АКБ (от 60Ah) скидка</FirstBannerText>
+              <SecondBannerText>от<p className="sum">1000</p>₽</SecondBannerText>
+            </BannerFirst>
+            <BannerSecond>
+              <FirstBannerText>Доставка АКБ по городу 24/7</FirstBannerText>
+              <SecondBannerText>за<p className="sum">0</p>₽</SecondBannerText>
+              <ThirdBannerText>Доставим и установим по Уфе аккумулятор за 60 секунд</ThirdBannerText>
+            </BannerSecond>
+            <BannerThird>
+              <FirstBannerText>Диагностика состояния АКБ</FirstBannerText>
+              <SecondBannerText>за<p className="sum">0</p>₽</SecondBannerText>
+              <ThirdBannerText>Проверяем основные показатели аккумулятора</ThirdBannerText>
+            </BannerThird>
+            <BannerFourth>
+              <FirstBannerText>Обслуживание аккумулятора</FirstBannerText>
+              <SecondBannerText>от<p className="sum">200</p>₽</SecondBannerText>
+              <ThirdBannerText>Проведем полное обслуживание аккумулятора</ThirdBannerText>
+            </BannerFourth>
+          </BannersCont>
 
-
-
-              <ProductCont>
-                <ProductBox>
-                  <img src={TestImage}/>
-                  <ProductName>АКБ 6ст-60 Polus Arctic о.п.</ProductName>
-                  <ProductDescriptionText>Емкость: 60Ач</ProductDescriptionText>
-                  <ProductDescriptionText>Пусковой ток: 560А</ProductDescriptionText>
-                  <ProductDescriptionText>Габариты: 242х175х190</ProductDescriptionText>
-                  <ProductDescriptionText>Полярность: Обратная</ProductDescriptionText>
-                  <ProductDescriptionText>Гарантия: 1 Год</ProductDescriptionText>
-                  <ProductCostCont>
-                    <ProductCost>                    
-                      <p className="CostText">Цена с обменом</p>
-                      <p className="Cost">6500</p>
-                    </ProductCost>
-                    <ProductCostNonT>                    
-                      <p className="CostText">Цена без обмена</p>
-                      <p className="Cost">7500</p>
-                    </ProductCostNonT>
-                  </ProductCostCont>
-                </ProductBox>
-
-                <ProductBox>
-                  <img src={TestImage}/>
-                  <ProductName>АКБ 6ст-60 Polus Arctic о.п.</ProductName>
-                  <ProductDescriptionText>Емкость: 60Ач</ProductDescriptionText>
-                  <ProductDescriptionText>Пусковой ток: 560А</ProductDescriptionText>
-                  <ProductDescriptionText>Габариты: 242х175х190</ProductDescriptionText>
-                  <ProductDescriptionText>Полярность: Обратная</ProductDescriptionText>
-                  <ProductDescriptionText>Гарантия: 1 Год</ProductDescriptionText>
-                  <ProductCostCont>
-                    <ProductCost>                    
-                      <p className="CostText">Цена с обменом</p>
-                      <p className="Cost">6500</p>
-                    </ProductCost>
-                    <ProductCostNonT>                    
-                      <p className="CostText">Цена без обмена</p>
-                      <p className="Cost">7500</p>
-                    </ProductCostNonT>
-                  </ProductCostCont>
-                </ProductBox>
-
-                <ProductBox>
-                  <img src={TestImage}/>
-                  <ProductName>АКБ 6ст-60 Polus Arctic о.п.</ProductName>
-                  <ProductDescriptionText>Емкость: 60Ач</ProductDescriptionText>
-                  <ProductDescriptionText>Пусковой ток: 560А</ProductDescriptionText>
-                  <ProductDescriptionText>Габариты: 242х175х190</ProductDescriptionText>
-                  <ProductDescriptionText>Полярность: Обратная</ProductDescriptionText>
-                  <ProductDescriptionText>Гарантия: 1 Год</ProductDescriptionText>
-                  <ProductCostCont>
-                    <ProductCost>                    
-                      <p className="CostText">Цена с обменом</p>
-                      <p className="Cost">6500</p>
-                    </ProductCost>
-                    <ProductCostNonT>                    
-                      <p className="CostText">Цена без обмена</p>
-                      <p className="Cost">7500</p>
-                    </ProductCostNonT>
-                  </ProductCostCont>
-                </ProductBox>
-
-                <ProductBox>
-                  <img src={TestImage}/>
-                  <ProductName>АКБ 6ст-60 Polus Arctic о.п.</ProductName>
-                  <ProductDescriptionText>Емкость: 60Ач</ProductDescriptionText>
-                  <ProductDescriptionText>Пусковой ток: 560А</ProductDescriptionText>
-                  <ProductDescriptionText>Габариты: 242х175х190</ProductDescriptionText>
-                  <ProductDescriptionText>Полярность: Обратная</ProductDescriptionText>
-                  <ProductDescriptionText>Гарантия: 1 Год</ProductDescriptionText>
-                  <ProductCostCont>
-                    <ProductCost>                    
-                      <p className="CostText">Цена с обменом</p>
-                      <p className="Cost">6500</p>
-                    </ProductCost>
-                    <ProductCostNonT>                    
-                      <p className="CostText">Цена без обмена</p>
-                      <p className="Cost">7500</p>
-                    </ProductCostNonT>
-                  </ProductCostCont>
-                </ProductBox>
-
-                <ProductBox>
-                  <img src={TestImage}/>
-                  <ProductName>АКБ 6ст-60 Polus Arctic о.п.</ProductName>
-                  <ProductDescriptionText>Емкость: 60Ач</ProductDescriptionText>
-                  <ProductDescriptionText>Пусковой ток: 560А</ProductDescriptionText>
-                  <ProductDescriptionText>Габариты: 242х175х190</ProductDescriptionText>
-                  <ProductDescriptionText>Полярность: Обратная</ProductDescriptionText>
-                  <ProductDescriptionText>Гарантия: 1 Год</ProductDescriptionText>
-                  <ProductCostCont>
-                    <ProductCost>                    
-                      <p className="CostText">Цена с обменом</p>
-                      <p className="Cost">6500</p>
-                    </ProductCost>
-                    <ProductCostNonT>                    
-                      <p className="CostText">Цена без обмена</p>
-                      <p className="Cost">7500</p>
-                    </ProductCostNonT>
-                  </ProductCostCont>
-                </ProductBox>
-                <ProductBox>
-                  <img src={TestImage}/>
-                  <ProductName>АКБ 6ст-60 Polus Arctic о.п.</ProductName>
-                  <ProductDescriptionText>Емкость: 60Ач</ProductDescriptionText>
-                  <ProductDescriptionText>Пусковой ток: 560А</ProductDescriptionText>
-                  <ProductDescriptionText>Габариты: 242х175х190</ProductDescriptionText>
-                  <ProductDescriptionText>Полярность: Обратная</ProductDescriptionText>
-                  <ProductDescriptionText>Гарантия: 1 Год</ProductDescriptionText>
-                  <ProductCostCont>
-                    <ProductCost>                    
-                      <p className="CostText">Цена с обменом</p>
-                      <p className="Cost">6500</p>
-                    </ProductCost>
-                    <ProductCostNonT>                    
-                      <p className="CostText">Цена без обмена</p>
-                      <p className="Cost">7500</p>
-                    </ProductCostNonT>
-                  </ProductCostCont>
-                </ProductBox>
-                <ProductBox>
-                  <img src={TestImage}/>
-                  <ProductName>АКБ 6ст-60 Polus Arctic о.п.</ProductName>
-                  <ProductDescriptionText>Емкость: 60Ач</ProductDescriptionText>
-                  <ProductDescriptionText>Пусковой ток: 560А</ProductDescriptionText>
-                  <ProductDescriptionText>Габариты: 242х175х190</ProductDescriptionText>
-                  <ProductDescriptionText>Полярность: Обратная</ProductDescriptionText>
-                  <ProductDescriptionText>Гарантия: 1 Год</ProductDescriptionText>
-                  <ProductCostCont>
-                    <ProductCost>                    
-                      <p className="CostText">Цена с обменом</p>
-                      <p className="Cost">6500</p>
-                    </ProductCost>
-                    <ProductCostNonT>                    
-                      <p className="CostText">Цена без обмена</p>
-                      <p className="Cost">7500</p>
-                    </ProductCostNonT>
-                  </ProductCostCont>
-                </ProductBox>
-                <ProductBox>
-                  <img src={TestImage}/>
-                  <ProductName>АКБ 6ст-60 Polus Arctic о.п.</ProductName>
-                  <ProductDescriptionText>Емкость: 60Ач</ProductDescriptionText>
-                  <ProductDescriptionText>Пусковой ток: 560А</ProductDescriptionText>
-                  <ProductDescriptionText>Габариты: 242х175х190</ProductDescriptionText>
-                  <ProductDescriptionText>Полярность: Обратная</ProductDescriptionText>
-                  <ProductDescriptionText>Гарантия: 1 Год</ProductDescriptionText>
-                  <ProductCostCont>
-                    <ProductCost>                    
-                      <p className="CostText">Цена с обменом</p>
-                      <p className="Cost">6500</p>
-                    </ProductCost>
-                    <ProductCostNonT>                    
-                      <p className="CostText">Цена без обмена</p>
-                      <p className="Cost">7500</p>
-                    </ProductCostNonT>
-                  </ProductCostCont>
-                </ProductBox>
-                
-
-                
-              </ProductCont>
-              
-    
-            </CatalogCont>
-          </MainPageStyled>
-        </GlobalStyled>
-      );
-    }
-};
+          <CatalogCont Desktop={isDesktop} Notebook={isNotebook} Tablet={isTablet} Mobile={isMobile}>
+            <FilterCont>
+              <SortCont>
+                <Sort>
+                  <p>Test</p>
+                </Sort>
+              </SortCont>
+            </FilterCont>
+            <ProductCont>
+              <ProductBox>
+                <ProductName>АКБ 6ст-60 Polus Arctic о.п.</ProductName>
+                <ProductDescriptionText>Емкость: 60Ач</ProductDescriptionText>
+                <ProductDescriptionText>Пусковой ток: 560А</ProductDescriptionText>
+                <ProductDescriptionText>Габариты: 242х175х190</ProductDescriptionText>
+                <ProductDescriptionText>Полярность: Обратная</ProductDescriptionText>
+                <ProductDescriptionText>Гарантия: 1 Год</ProductDescriptionText>
+                <ProductCostCont>
+                  <ProductCost>
+                    <p className="CostText">Цена с обменом</p>
+                    <p className="Cost">6500</p>
+                  </ProductCost>
+                  <ProductCostNonT>
+                    <p className="CostText">Цена без обмена</p>
+                    <p className="Cost">7500</p>
+                  </ProductCostNonT>
+                  {/* {images.map(image => (
+                    <div key={image.id}>
+                      <img src={image.url} alt="Test Image" onLoad={() => URL.revokeObjectURL(image.url)} />
+                      <p>{image.url}</p>
+                    </div>
+                  ))} */}
+                </ProductCostCont>
+              </ProductBox>
+            </ProductCont>
+          </CatalogCont>
+        </MainPageStyled>
+      </GlobalStyled>
+    );
+  }
+}
 
 export default MainPage;

@@ -8,15 +8,17 @@ import { MainPageStyled } from "./test.page.style";
 
 import Modal from "../../Components/Popup/Modal";
 import AddProduct from "../../Components/Popup/AddProductModal/AddProduct";
+import DinarImage from "../../Components/DinarImage/DinarImage";
 
 const Test = () => {
-  const [modalActive, setModalActive] = useState(true);
+  const [modalActive, setModalActive] = useState(false);
   return (
     <MainPageStyled>
       <button onClick={() => setModalActive(true)}>asdasd</button>
       <Modal active={modalActive} setActive={setModalActive}>
         <AddProduct/>
       </Modal>
+      <DinarImage/>
 
     </MainPageStyled>
   );

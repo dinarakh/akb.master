@@ -55,7 +55,6 @@ namespace akb_master.server.Controllers
         {
             Product product = new Product
             {
-                Id = productDto.Id,
                 Name = productDto.Name,
                 Price = productDto.Price,
                 Price_Trade = productDto.Price_Trade,
@@ -81,7 +80,6 @@ namespace akb_master.server.Controllers
         }
         public class ProductDto
         {
-            public int Id { get; set; }
             public string Name { get; set; }
             public int Price { get; set; }
             public int Price_Trade { get; set; }

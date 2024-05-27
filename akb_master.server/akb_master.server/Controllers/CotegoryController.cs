@@ -43,7 +43,6 @@ namespace akb_master.server.Controllers
         {
             Category category = new Category
             {
-                Id = categoryDto.Id,
                 Name = categoryDto.Name
             };
             
@@ -62,7 +61,6 @@ namespace akb_master.server.Controllers
         }
         public class CategotyDto            
         {
-            public int Id { get; set; }
 
             public string Name { get; set; }
         }

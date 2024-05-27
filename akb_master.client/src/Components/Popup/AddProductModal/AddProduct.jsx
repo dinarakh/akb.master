@@ -10,7 +10,7 @@ import { render } from "@testing-library/react";
 
 class AddProduct extends React.Component{
     state = {
-        id: "",
+        // id: "",
         country: "",
         polarity: "",
         dimensions: "",
@@ -18,11 +18,11 @@ class AddProduct extends React.Component{
         starting_current: "",
         performance: "",
         guarantee: "",
-        isLargeDesktop: false,
-        isDesktop: false,
-        isNotebook: false,
-        isTablet: false,
-        isMobile: false,
+        // isLargeDesktop: false,
+        // isDesktop: false,
+        // isNotebook: false,
+        // isTablet: false,
+        // isMobile: false,
       };
     
       handleChange = (event) => {
@@ -33,7 +33,7 @@ class AddProduct extends React.Component{
       handleSubmit = async (event) => {
         event.preventDefault();
         const {
-          id,
+          // id,
           country,
           polarity,
           dimensions,
@@ -44,7 +44,7 @@ class AddProduct extends React.Component{
         } = this.state;
     
         const descriptionData = {
-          id,
+          // id,
           country,
           polarity,
           dimensions,
@@ -71,54 +71,54 @@ class AddProduct extends React.Component{
             console.error("Error creating description:", response.statusText);
           }
         } catch (error) {
-          console.error("Error creating description:", error);
+          console.error("Error creating description:", this.state);
         }
       };
     
-      componentDidMount() {
-        this.updateMediaQueries();
-        window.addEventListener("resize", this.updateMediaQueries);
-      }
+      // componentDidMount() {
+      //   this.updateMediaQueries();
+      //   window.addEventListener("resize", this.updateMediaQueries);
+      // }
     
-      componentWillUnmount() {
-        window.removeEventListener("resize", this.updateMediaQueries);
-      }
+      // componentWillUnmount() {
+      //   window.removeEventListener("resize", this.updateMediaQueries);
+      // }
     
-      updateMediaQueries = () => {
-        const isLargeDesktop = window.matchMedia("(min-width: 1920px)").matches;
-        const isDesktop = window.matchMedia(
-          "(min-width: 1280px) and (max-width: 1919px)"
-        ).matches;
-        const isNotebook = window.matchMedia(
-          "(min-width: 960px) and (max-width: 1279px)"
-        ).matches;
-        const isTablet = window.matchMedia(
-          "(min-width: 600px) and (max-width: 959px)"
-        ).matches;
-        const isMobile = window.matchMedia("(max-width: 599px)").matches;
+      // updateMediaQueries = () => {
+      //   const isLargeDesktop = window.matchMedia("(min-width: 1920px)").matches;
+      //   const isDesktop = window.matchMedia(
+      //     "(min-width: 1280px) and (max-width: 1919px)"
+      //   ).matches;
+      //   const isNotebook = window.matchMedia(
+      //     "(min-width: 960px) and (max-width: 1279px)"
+      //   ).matches;
+      //   const isTablet = window.matchMedia(
+      //     "(min-width: 600px) and (max-width: 959px)"
+      //   ).matches;
+      //   const isMobile = window.matchMedia("(max-width: 599px)").matches;
     
-        this.setState({
-          isLargeDesktop,
-          isDesktop,
-          isNotebook,
-          isTablet,
-          isMobile,
-        });
-      };
+      //   this.setState({
+      //     isLargeDesktop,
+      //     isDesktop,
+      //     isNotebook,
+      //     isTablet,
+      //     isMobile,
+      //   });
+      // };
   render() {
-    const { isLargeDesktop, isDesktop, isNotebook, isTablet, isMobile } =
-      this.state;
+    // const { isLargeDesktop, isDesktop, isNotebook, isTablet, isMobile } =
+    //   this.state;
     return(
         <AddProductCont>
             <div className="test">
-              <form onSubmit={this.handleSubmit}>
-                <input
+               <form onSubmit={this.handleSubmit}>
+              {/*  <input
                   type="text"
                   name="id"
                   value={this.state.id}
                   onChange={this.handleChange}
                   placeholder="Id"
-                />
+                /> */}
                 <input
                   type="text"
                   name="country"

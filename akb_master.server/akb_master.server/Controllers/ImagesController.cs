@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using akb_master.server.Context;
 using akb_master.server.Models;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace akb_master.server.Controllers
 {
@@ -36,34 +37,46 @@ namespace akb_master.server.Controllers
             return Ok(images);
         }
 
+
         //POST
-        [HttpPost(Name = "CreateImage")]
-        public IActionResult CreateImage(ImageDto imageDto)
+        [HttpPost("upload")]
+        public async Task<IActionResult> UploadImage(IFormFile file)
         {
-            Image image = new Image
-            {
-                Id = imageDto.Id,
-                Name = imageDto.Name
-            };
 
-            if (image == null)
+            if (file == null || file.Length == 0)
+                return BadRequest("No file uploaded.");
+            var imageGuid = Guid.NewGuid();
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Images", $"{imageGuid}.jpg");
+
+            var memoryStream = new MemoryStream();
+            await file.CopyToAsync(memoryStream);
+            byte[] byteArray = memoryStream.ToArray();
+
+            try
             {
-                // Возвращаем HTTP 400 (Bad Request), если данные категории некорректны
-                return BadRequest();
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                var image = new Image
+                {
+                    //Id = 2,
+                    ImageGuid = imageGuid,
+                    ByteImage = byteArray,
+                };
+
+                _context.Images.Add(image);
+                await _context.SaveChangesAsync();
+
+
+                return CreatedAtRoute("GetImageById", new { id = image.Id }, image);
             }
-
-            // Добавляем категорию в контекст и сохраняем изменения в базе данных
-            _context.Images.Add(image);
-            _context.SaveChanges();
-
-            // Возвращаем HTTP 201 (Created) и URL новой категории
-            return CreatedAtRoute("GetImageById", new { id = image.Id }, image);
-        }
-        public class ImageDto
-        {
-            public int Id { get; set; }
-
-            public string Name { get; set; }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc);
+            }
+            return Ok();
         }
 
     }

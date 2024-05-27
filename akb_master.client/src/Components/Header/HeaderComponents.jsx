@@ -105,20 +105,16 @@ const HeaderComponents = () => {
       </NavbarTop>
 
       <NavbarBottom>
-        <Link to="/">
-          {logo}
-        </Link>
+        <Link to="/">{logo}</Link>
         <ContLink>
           <MenuItemsText>
-            <Link to="/privacy">
-              Каталог
-            </Link>
+            <Link to="/">Каталог</Link>
           </MenuItemsText>
-          <MenuItemsText>Услуги</MenuItemsText>
           <MenuItemsText>
-            <Link to="/contact">
-              Контакты
-            </Link>
+            <Link to="/">Услуги</Link>
+          </MenuItemsText>
+          <MenuItemsText>
+            <Link to="/contact">Контакты</Link>
           </MenuItemsText>
         </ContLink>
 

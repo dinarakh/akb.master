@@ -16,6 +16,7 @@ namespace akb_master.server.Context
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Image> Images { get; set; }
+        public DbSet<ClientNumber> ClientNumbers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

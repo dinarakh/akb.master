@@ -42,7 +42,6 @@ namespace akb_master.server.Controllers
         {
             Description description= new Description
             {
-                Id = descriptionsDto.Id,
                 Country = descriptionsDto.Country,
                 Polarity = descriptionsDto.Polarity,
                 Dimensions  = descriptionsDto.Dimensions,
@@ -67,7 +66,6 @@ namespace akb_master.server.Controllers
         }
         public class DescriptionsDto
         {
-            public int Id { get; set; }
             public string Country { get; set; }
             public string Polarity { get; set; }
             public string Dimensions { get; set; }

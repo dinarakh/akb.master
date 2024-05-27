@@ -46,9 +46,10 @@ export const ProductBox = styled.div`
 `;
 
 export const ProductName = styled.p`
-  font-size: 18px;
+  font-size: 14px;
+  font-weight: normal;
   text-align: center;
-  padding: 0 0 10px 0;
+  padding: 0 10px 10px ;
 `;
 
 export const ProductDescriptionText = styled.p`

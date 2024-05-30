@@ -35,7 +35,7 @@ namespace akb_master.server.Controllers
             }
             // Возвращаем список продуктов в формате JSON
             return Ok(images);
-        }
+        } 
 
 
         //POST
@@ -52,8 +52,8 @@ namespace akb_master.server.Controllers
             await file.CopyToAsync(memoryStream);
             byte[] byteArray = memoryStream.ToArray();
 
-            try
-            {
+            //try
+            //{
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     await file.CopyToAsync(stream);
@@ -61,7 +61,6 @@ namespace akb_master.server.Controllers
 
                 var image = new Image
                 {
-                    //Id = 2,
                     ImageGuid = imageGuid,
                     ByteImage = byteArray,
                 };
@@ -71,12 +70,12 @@ namespace akb_master.server.Controllers
 
 
                 return CreatedAtRoute("GetImageById", new { id = image.Id }, image);
-            }
-            catch (Exception exc)
-            {
-                Console.WriteLine(exc);
-            }
-            return Ok();
+            //}
+            //catch (Exception exc)
+            //{
+            //    Console.WriteLine(exc);
+            //}
+            //return Ok();
         }
 
     }

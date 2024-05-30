@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import Product from "./Product";
 //Styles Main
 import { MainPageStyled, СarouselBrandsCont } from "./Main.styled";
 
@@ -24,20 +25,6 @@ import {
   ThirdBannerText,
 } from "./Banners.styled";
 
-// Styles Product
-import {
-  CatalogCont,
-  FilterCont,
-  SortCont,
-  Sort,
-  ProductCont,
-  ProductBox,
-  ProductName,
-  ProductDescriptionText,
-  ProductCostCont,
-  ProductCost,
-  ProductCostNonT,
-} from "./Product.styed";
 
 // Global styles
 import { GlobalStyled } from "../Global.styled";
@@ -164,8 +151,8 @@ class MainPage extends React.Component {
               <ThirdBannerText>Проведем полное обслуживание аккумулятора</ThirdBannerText>
             </BannerFourth>
           </BannersCont>
-
-          <CatalogCont Desktop={isDesktop} Notebook={isNotebook} Tablet={isTablet} Mobile={isMobile}>
+          <Product/>
+          {/* <CatalogCont Desktop={isDesktop} Notebook={isNotebook} Tablet={isTablet} Mobile={isMobile}>
             <FilterCont>
               <SortCont>
                 <Sort>
@@ -190,16 +177,16 @@ class MainPage extends React.Component {
                     <p className="CostText">Цена без обмена</p>
                     <p className="Cost">7500</p>
                   </ProductCostNonT>
-                  {/* {images.map(image => (
+                  {images.map(image => (
                     <div key={image.id}>
                       <img src={image.url} alt="Test Image" onLoad={() => URL.revokeObjectURL(image.url)} />
                       <p>{image.url}</p>
                     </div>
-                  ))} */}
+                  ))}
                 </ProductCostCont>
               </ProductBox>
             </ProductCont>
-          </CatalogCont>
+          </CatalogCont> */}
         </MainPageStyled>
       </GlobalStyled>
     );

@@ -16,7 +16,5 @@ namespace akb_master.server.Models
 
         public Image Image { get; set; }
 
-
-
     }
 }
